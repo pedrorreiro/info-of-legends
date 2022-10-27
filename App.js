@@ -1,20 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import MyTab from "./Navigator/Tab/MyTab";
+import {NavigationContainer} from "@react-navigation/native";
+import { useFonts } from 'expo-font';
+import { useCallback, useEffect } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import { View } from 'react-native';
+import MyStack from './Navigator/Stack/MyStack';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [fontsLoaded] = useFonts({
+    'ReadexPro': require("./assets/fonts/ReadexPro/ReadexPro-Medium.ttf"),
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  useEffect(() => {
+    async function prepare(){
+      await SplashScreen.preventAutoHideAsync();
+    }
+
+    prepare();
+    
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [!fontsLoaded]);
+
+  if(!fontsLoaded){
+    return null;
+  }
+
+  return(
+    <View style={{flex: 1}} onLayout={onLayoutRootView}>
+      <NavigationContainer>
+      
+      <MyTab /> 
+
+    </NavigationContainer>
+    </View>
+    
+  )
+}

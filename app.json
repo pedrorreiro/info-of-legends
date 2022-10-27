@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "info-of-legends",
+    "name": "Info of Legends",
     "slug": "info-of-legends",
+    "owner": "equipe",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,13 +19,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pedrorreiro.info-of-legends"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.equipe.infooflegends"
     },
     "web": {
       "favicon": "./assets/favicon.png"
